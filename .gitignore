@@ -1,3 +1,14 @@
+gradebook.db
+python_data.*
+.jupyterlite.doit.db
+_output
+_old
+_source
+_release
+media/
+ipynb/*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
