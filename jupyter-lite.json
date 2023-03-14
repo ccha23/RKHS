@@ -1,0 +1,174 @@
+{
+  "jupyter-config-data": {
+    "appName": "JupyterLite",
+    "appUrl": "./lab",
+    "appVersion": "0.1.0-beta.0",
+    "baseUrl": "./",
+    "faviconUrl": "./lab/favicon.ico",
+    "federated_extensions": [
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.b885f44022afff6e172a.js",
+        "name": "@agoose77/jupyterlab-markup"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.ea560b1069a7ce3142f5.js",
+        "mimeExtension": "./mimeExtension",
+        "name": "@deathbeds/ipydrawio"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.6573fe4c8449930c1a9f.js",
+        "name": "@deathbeds/ipydrawio-jupyter-templates"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.71440efb81f9f742fd6c.js",
+        "name": "@deathbeds/ipydrawio-notebook"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.b3520935a526b3c010d2.js",
+        "name": "@deathbeds/ipydrawio-webpack"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.fed96ba8c65972f90efd.js",
+        "name": "@deathbeds/jupyterlab-deck"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.7dafa2779237f8a139cd.js",
+        "name": "@deathbeds/jupyterlab-font-anonymous-pro"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.72ec8004b3300a2556a1.js",
+        "name": "@deathbeds/jupyterlab-font-dejavu-sans-mono"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.b480a1e5ecf432206aaf.js",
+        "name": "@deathbeds/jupyterlab-font-fira-code"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.986f2c58c16721840289.js",
+        "name": "@deathbeds/jupyterlab-fonts"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.d6df56cd69f4640706bc.js",
+        "name": "@jupyter-widgets/jupyterlab-manager"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.8dcc730aedc487734a23.js",
+        "name": "@jupyterlite/webrtc-docprovider",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.99c828c2ee313756f7dc.js",
+        "name": "bqplot"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.e6bd1eec9b5a4a6a3151.js",
+        "name": "divemathjax3",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.9693baf6fc7fc4c880d2.js",
+        "name": "ipycanvas"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.176149dcbfb677ea36fb.js",
+        "name": "ipyevents"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.07f126f07ba7f52c9c7e.js",
+        "name": "jupyter-divewidgets"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.a397b41514ddde5db0df.js",
+        "name": "jupyter-leaflet"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.2245c790a510bf1865ea.js",
+        "name": "jupyter-matplotlib"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.791e3bf8194bf9657309.js",
+        "name": "jupyterlab-filesystem-access",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.e52aaaf3c49b9e545ee3.js",
+        "name": "jupyterlab-jupytext"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.cbbfa6441b25a9d89255.js",
+        "name": "jupyterlab-myst",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.aa1060b2d1221f8e5688.js",
+        "name": "jupyterlab_pygments",
+        "style": "./style"
+      }
+    ],
+    "fullLabextensionsUrl": "./extensions",
+    "fullMathjaxUrl": "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js",
+    "fullStaticUrl": "./build",
+    "licensesUrl": "./lab/api/licenses",
+    "mathjaxConfig": "TeX-AMS_CHTML-full,Safe",
+    "settingsOverrides": {
+      "@jupyterlite/webrtc-docprovider:plugin": {
+        "disabled": true,
+        "roomPrefix": "cs1302",
+        "signalingUrls": [
+          "wss://y-webrtc-signaling-eu.herokuapp.com",
+          "wss://y-webrtc-signaling-us.herokuapp.com",
+          "wss://signaling.yjs.dev"
+        ],
+        "usercolor": "f57c00",
+        "username": "Anonymous User"
+      }
+    }
+  },
+  "jupyter-lite-schema-version": 0
+}
