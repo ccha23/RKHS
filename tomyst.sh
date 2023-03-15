@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p myst
 cd ipynb
-for f in $(find . -name '*.ipynb')
+for f in $(find . -name '*.ipynb' -not -path '*/.*')
 do
     echo "processing f=\"${f}\":"
     declare -a cmds=(
