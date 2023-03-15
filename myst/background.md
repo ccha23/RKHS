@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-## Notations
+## Background
 
 +++
 
@@ -306,7 +306,7 @@ for any $\mc{R}\subseteq \mc{L}^1_{\R{Z}'}$. The lower bound for every $s$ is no
 
 +++
 
-:::{admonition} Proof
+:::{admonition} **Proof**
 
 By the Frenchel inequality,
 
@@ -348,22 +348,22 @@ where the expressions are obtained from the DV formula with $\mc{R} = \mc{R}_{\R
 
 +++
 
-A positive type function $K\in (-\infty, \infty)^{Z^2}$ is a reproducing kernel, which induces a reproducing kernel Hilbert space (RKHS) $\mc{H}_K\subseteq (-\infty, \infty)^{Z}$ with inner product $\langle\cdot ,\cdot\rangle_K$ (and norm $\norm{\cdot}_K$) satisfying the reproducing property that, for all $z\in Z$ and $s\in \mc{H}_K$,
+A positive type function $K\in (-\infty, \infty)^{Z^2}$ is a reproducing kernel, which induces a reproducing kernel Hilbert space (RKHS) $\mc{H}_K\subseteq (-\infty, \infty)^{Z}$ with inner product $\langle\cdot ,\cdot\rangle_K$ (and norm $\norm{\cdot}_K$) satisfying the reproducing property that, for all $z\in Z$ and $t\in \mc{H}_K$,
 
 \begin{align}
 \overbrace{K(\cdot, z)}^{K_z :=} &\in \mc{H}_K\\
-\langle s, K_z\rangle_K &= s(z).
+\langle t, K_z\rangle_K &= s(z).
 \end{align}
 
-$K_z$ is called the $z$-point evaluation embedding. It is the unique element in $\mc{H}$ such such that $s\in \mc{H}_K\mapsto \langle s, K_z\rangle_K$ gives the point evaluation function $s\in \mc{H}_K \mapsto s(z)$ at $z$. The mapping from $z\in Z$ to $K_z$ is called the canonical feature map.
+$K_z$ is called the $z$-point evaluation embedding. It is the unique element in $\mc{H}$ such such that $t\in \mc{H}_K\mapsto \langle t, K_z\rangle_K$ gives the point evaluation function $t\in \mc{H}_K \mapsto s(z)$ at $z$. The mapping from $z\in Z$ to $K_z$ is called the canonical feature map.
 
 +++
 
 For any $\R{Z}'$ with $Z\supseteq \Omega_{\R{Z}'}$, the restriction of $\mc{H}_K$ to $\R{Z}'$ is
 
 \begin{align}
-\mc{H}_K|_{\R{Z}'} &:=\Set{\left.s|_{\Omega_{\R{Z}'}}\right|s \in \mc{H}_K }&& \text{where}\\
-s|_{\Omega_{\R{Z}'}} &: z\in \Omega_{\R{Z}'} \mapsto s(z),
+\mc{H}_K|_{\R{Z}'} &:=\Set{\left.t|_{\Omega_{\R{Z}'}}\right|t\in \mc{H}_K }&& \text{where}\\
+t|_{\Omega_{\R{Z}'}} &: z\in \Omega_{\R{Z}'} \mapsto s(z),
 \end{align}
 
 which is the function $s$ restricted to the domain $\Omega_{\R{Z}'}$.
@@ -406,11 +406,11 @@ The following result, which is stated in a way analogous to the reproducing prop
 :::{admonition} **Proposition**
 
 
-Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'$ and reproducing kernel $K$. For all $r\in \mc{L}^1_{\R{Z}'}$ and $s\in \mc{H}_K$, 
+Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'$ and reproducing kernel $K$. For all $r\in \mc{L}^1_{\R{Z}'}$ and $t\in \mc{H}_K$, 
 
 \begin{align}
 \mu_{\R{Z}'}[r] &\in \mc{H}_K \\
-\langle s, \mu_{\R{Z}'}[r]\rangle_K &= \langle r, s\rangle_{\R{Z}'}\\
+\langle t, \mu_{\R{Z}'}[r]\rangle_K &= \langle r, t|_{\Omega_{\R{Z}'}}\rangle_{\R{Z}'}\\
 &=E[r(\R{Z}')s(\R{Z}')].
 \end{align}
 
@@ -418,7 +418,7 @@ Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'
 
 +++
 
-:::{admonition} Proof
+:::{admonition} **Proof**
 
 Recall that
 
@@ -429,9 +429,9 @@ Recall that
 i.e., the dual pairing of $r$ with the $z$-point evaluation embedding restricted to $\Omega_{\R{Z}'}$. Since $K_z|_{\Omega_{\R{Z}'}}\in  \mc{L}^{\infty}_{\R{Z}'}$, the dual pairing is a bounded linear function of $r\in \mc{L}^1_{\R{Z}'}$, and so $\mu_{\R{Z}'}[r]\in \mc{H}_K$ as desired. Furthermore,
 
 \begin{align}
-\langle s, \mu_{\R{Z}'}[r]\rangle_K
-&=\langle s, \langle r, K_z\rangle_{\R{Z}'}\rangle_K\\
-&=\langle r, \langle s, K_z\rangle_K\rangle_{\R{Z}'} && \text{by linearity}\\
+\langle t, \mu_{\R{Z}'}[r]\rangle_K
+&=\langle t, \langle r, K_z\rangle_{\R{Z}'}\rangle_K\\
+&=\langle r, \langle t, K_z\rangle_K\rangle_{\R{Z}'} && \text{by linearity}\\
 &=\langle r, s \rangle_{\R{Z}'} && \text{by the reproducing property},
 \end{align}
 
@@ -445,74 +445,12 @@ which gives $E[r(\R{Z}')K_z(\R{Z}')]$ by definition.
 
 +++
 
-:::{admonition} Lemma
-
-Consider $\R{Z}'\sim K$ for a reproducing kernel $K\subseteq (-\infty,\infty)^Z$, a convex function $G\in (-\infty, \infty]^{ \mc{L}^{1}_{\R{Z}'}}$, and its convex conjugate $G^*\in (-\infty, \infty]^{ \mc{L}^{\infty}_{\R{Z}'}}$. For any $r'\in \mc{L}^{1}_{\R{Z}'}$, 
-
-\begin{align}
-G[r']
-&\geq \sup_{s \in \mc{H}_K|_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - G^*[s]\\
-&= \inf_{\substack{r\in \mc{L}^1_{\R{Z}'}:\\ \mathclap{\mu_{\R{Z}'}[r']=\mu_{\R{Z}'}[r]}}} G[r].
-\end{align}
-
-The inequality holds with equality iff the supremum remains unchanged with $\mc{H}_K|_{\R{Z}'}$ replaced by $\mc{L}^\infty_{\R{Z}'}$. Furthermore, the infimum has a unique solution $r=r'$ iff $\mc{H}_{K}|_{\R{Z}'}\subseteq \mc{L}^\infty_{\R{Z}'}$ is total for the dual pairing $\langle \cdot, \cdot \rangle_{\R{Z}'}$, i.e., for all $r\in \mc{L}^1_{\R{Z}'}$, we have $r'=0$ up to a $P_{\R{Z}'}$-null set if
-
-\begin{align}
-\langle r,K_z|_{\Omega_{\R{Z}'}}\rangle &= 0 && \forall z\in Z.
-\end{align}
-
-:::
-
-+++
-
-:::{admonition} Proof
-
-Since convex conjugation is a involution,
-
-\begin{align}
-G[r'] &= \sup_{s \in \mc{L}^\infty_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - G^*[s]\\
-&\geq \sup_{s \in \mc{H}_K|_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - G^*[s]\\
-&= \sup_{s \in \mc{H}_K|_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - \left[\sup_{r\in \mc{L}^1_{\R{Z}'}} \langle r, s\rangle_{\R{Z}'} - G[r]\right]\\
-&=  \sup_{s \in \mc{H}_K|_{\R{Z}'}}\inf_{r\in \mc{L}^1_{\R{Z}'}} \langle r'-r, s\rangle_{\R{Z}'} + G[r]\\
-&=  \inf_{r\in \mc{L}^1_{\R{Z}'}} \sup_{s \in \mc{H}_K|_{\R{Z}'}} \underbrace{\langle r'-r, s\rangle_{\R{Z}'}}_{=\langle s, \mu_{\R{Z}'}[r'-r]\rangle_K} + G[r]\\
-&=  \inf_{r\in \mc{L}^1_{\R{Z}'}} G[r] + \underbrace{\sup_{s \in \mc{H}_K|_{\R{Z}'}} \langle s, \mu_{\R{Z}'}[r'-r]\rangle_K}_{=\delta_{\Set{\mu_{\R{Z}'}[r']}}[\mu_{\R{Z}'}[r]] }\\
-&= \inf_{\substack{r\in \mc{L}^1_{\R{Z}'}:\\ \mathclap{\mu_{\R{Z}'}[r']=\mu_{\R{Z}'}[r]}}} G[r]
-\end{align}
-
-as desired. The equality condition is obvious. $\mu_{\R{Z}'}[r']=\mu_{\R{Z}'}[r]$ implies $r'=r$ iff $\mc{H}_K|_{\R{Z}'}$ is total since 
-
-\begin{align}
-\mu_{\R{Z}'}[r'-r](z)&= \langle r'-r, K_z|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'}.
-\end{align}
-
-:::
-
-+++
-
-Applying the above lemma with
-
-\begin{align}
-r' &:= \frac{dP_{\R{Z}}}{dP_{\R{Z}'}}\\
-G^*[s] &:= F^*[s] +  G_0^*[s]\\
-G^*_0[s] &:= \frac{\norm{s}_K}{4\lambda} + \delta_{\mc{H}_K}[s]
-\end{align}
-
-and noticing that
-
-\begin{align}
-G_0[r]&:= \sup_{s\in \mc{L}^\infty_{\R{Z}'}} \langle r,s \rangle_{\R{Z}'} - G_0^*[s]\\
-&= \lambda \norm{\mu_{\R{Z}'}[r]}_K \\
-G[r'] &= \inf_{r\in \mc{L}^1_{\R{Z}'}} F[r] + G_0[r'-r]
-\end{align}
-
-+++
-
 :::{admonition} **Theorem** (Kernel-based formula for $f$-divergence)
 
 For $P_{\R{Z}}\ll P_{\R{Z}'}$, a function $f\in {(-\infty,\infty]}^{[0,\infty)}$ strictly convex with $f(1)=0$, and a reproducing kernel $K\subseteq (-\infty, \infty)^{Z^2}$ such that $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$,
 
 \begin{align}
-D_f(P_{\R{Z}}\|P_{\R{Z}'})&\geq \sup_{\lambda>0} \underbrace{\sup_{s\in \mc{H}} E[s(\R{Z})] - F^*[s] - \frac1{4\lambda} \norm{s}_K}_{\alpha(\lambda):=}\\
+D_f(P_{\R{Z}}\|P_{\R{Z}'})&\geq \sup_{\lambda>0} \underbrace{\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \frac1{4\lambda} \norm{t}_K}_{\alpha(\lambda):=}\\
 &= \sup_{\lambda>0} \overbrace{\inf_{r\in \mc{R}} E\left[(f(r(\R{Z})) \right] + \lambda\norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K}^{\beta(\lambda):=}\\
 &= \inf_{\substack{r\in \mc{R}:\\ \mu_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
 \end{align}
@@ -535,23 +473,14 @@ in which case $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ implies $r\in \le
 
 +++
 
-:::{admonition} Proof
+:::{admonition} **Proof**
 
-Let 
-
-\begin{align}
-r' &\in\left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}\\
-G[s]&:= 
-\begin{cases}
-\frac1{4\lambda} \norm{s}_K & s\in \mc{H}|_{\R{Z}'}\\
-\infty & \text{otherwise}.
-\end{cases}
-\end{align}
-
-Then,
+Consider any $r' \in\left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$.
 
 \begin{align}
-\alpha(\lambda)&=\sup_{s\in \mc{H}} E[s(\R{Z})] - F^*[s] - \frac1{4\lambda} \norm{s}_K\\
+\alpha(\lambda)&=\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \frac1{4\lambda} \norm{t}_K\\
+&=\sup_{s\in \mc{L}^\infty(\R{Z}')} \sup_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}} \underbrace{E[t(\R{Z})]}_{\mathrlap{\begin{aligned}&=E[s(\R{Z})]\\&= \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'}\end{aligned}}} - F^*[\underbrace{t|_{\Omega_{\R{Z}'}}}_{=s}] - \frac1{4\lambda} \norm{t}_K\\
+&=\sup_{s\in \mc{L}^\infty(\R{Z}')} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - F^*[s] - \overbrace{\inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}}\frac1{4\lambda} \norm{t}_K}^{G[s]:=}\\
 &=\sup_{s\in \mc{L}^\infty(\R{Z}')} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - (F^*+G)[s]\\
 &=[F^*+G]^*[r']
 \end{align}
@@ -559,14 +488,19 @@ Then,
 To compute the above convex conjugate, note that
 
 \begin{align}
-\operatorname{Ker}(\langle \cdot, \mc{H}|_{\R{Z}'} \rangle_{\R{Z'}}) &= \Set{r\in \mc{L}^1_{\R{Z}'} \left|\forall s\in\mc{H}|_{\R{Z}'}, \langle r,s \rangle_{\R{Z'}} = 0 \right.}\\
- &= \Set{r\in \mc{L}^1_{\R{Z}'} \left|\forall s\in\mc{H}|_{\R{Z}'}, \langle s,\mu_{\R{Z}'}[r] \rangle_K = 0 \right.}\\
- &= \Set{r\in \mc{L}^1_{\R{Z}'} \left|\mu_{\R{Z}'}[r] = 0 \right.}\\
-G^*[r']&= \inf_{r'-r\in \operatorname{Ker}(\langle \cdot, \mc{H}|_{\R{Z}'} \rangle_{\R{Z'}})} \lambda \norm{\mu_{\R{Z}'}[r]}_K\\
-&= \inf_{\substack{r\in \mc{L}^1_{\R{Z}'}:\\ \mu_{\R{Z}'}[r] =\mu_{\R{Z}'}[r']}} \lambda \norm{\mu_{\R{Z}'}[r]}_K
+G^*[r'] 
+&:= \sup_{s\in \mc{L}^\infty_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - G[s]\\
+&= \sup_{s\in \mc{L}^\infty_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - \frac1{4\lambda} \inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}}  \norm{t}_K\\
+&=  \sup_{t\in \mc{H}_K} \underbrace{\sup_{\substack{s\in \mc{L}^\infty_{\R{Z}'}:\\ t|_{\Omega_{\R{Z}'}}=s}} \langle r', s\rangle_{\R{Z}'}}_{\mathrlap{\begin{aligned}
+&=\langle r', t|_{\Omega_{\R{Z}'}}\rangle_{\R{Z}'}\\
+&= \langle t, \mu_{\R{Z}'}[r']\rangle_K 
+\end{aligned}
+}} - \frac1{4\lambda}   \norm{t}_K\\
+&= \sup_{t\in \mc{H}_K} \left(\norm{2\lambda\mu_{\R{Z}'}[r']}_K  - \norm{t-2\lambda\mu_{\R{Z}'}[r']}_K \right)\frac1{4\lambda}\\
+&= \lambda \norm{\mu_{\R{Z}'}[r']}_K
 \end{align}
 
-Hence,
+By the infimal convolution theorem,
 
 \begin{align}
 \alpha(\lambda)&=[F^*+G]^*[r']\\
@@ -577,18 +511,42 @@ Hence,
 &= \beta(\lambda)
 \end{align}
 
+Further maximizing the bound over $\lambda$ gives
+
 \begin{align}
 \sup_{\lambda >0} \beta(\lambda)
 &= \inf_{r\in \mc{R}} E[f(r(\R{Z}))] + \sup_{\lambda >0} \lambda \norm*{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K\\
 &= \inf_{\substack{r\in \mc{R}:\\ \mu_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
 \end{align}
 
-The bound is tight if $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ implies $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$. This follows from the desired equality condition because
+as desired. The bound is tight if $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ imply $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$. This gives the desired equality condition because
 
 \begin{align}
 r\in \mc{R} &\iff r-r' \in \mc{R}-\Set{\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}}\\
 \mu_{\R{Z}'}[r]=E[K_{\R{Z}}] &\iff r-r'\in \operatorname{Ker}(\langle \cdot, \mc{H}|_{\R{Z}'} \rangle_{\R{Z'}}) \\
 r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'} &\iff r-r'\in \left[0\right]_{\R{Z}'}.
 \end{align}
+
+:::
+
++++
+
+:::{important}
+
+- How to train a neural network to return $t\in \mc{H}_K$? E.g.,
+
+    \begin{align}
+    t_\theta(z):=\sum_{i=1}^n a_i K_{z_i}(z)
+    \end{align}
+    
+    where $\theta:=(a^n, z^n)$.
+    
+- How to train a neural network to return $r\in \mc{R}_{\R{Z}'}$? E.g.,
+
+    \begin{align}
+    r_\theta(z):= \frac{e^{u_{\theta}(z)}}{E[e^{u_{\theta}(\R{Z}')}]}.
+    \end{align}
+    
+- Can the kernel method mitigate overfitting in sample estimates?
 
 :::
