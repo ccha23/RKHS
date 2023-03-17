@@ -11,6 +11,8 @@ kernelspec:
   name: python3
 ---
 
++++ {"tags": []}
+
 ## Background
 
 +++
@@ -19,14 +21,39 @@ kernelspec:
 
 +++
 
-Consider a probability space $(\Omega, \mc{E}, P)$ where
+We consider, by default, a probability space $(\Omega, \mc{E}, P)$ where
 - the set $\Omega$ is the sample space,
 - the sigma algebra $\mc{E}\subseteq 2^{\Omega}$ is the collection of events, and
-- the countably additive function $P\in [0,1]^{\mc{E}}$ is the probability measures.
+- the countably additive function $P\in [0,1]^{\mc{E}}$ is the probability measure.
 
 +++
 
-To consider another probability measure similar to $P$, we simply write $Q\sim P$ to denote another countably additive function $Q$ having the same domain and range as $P$.
+$Q\sim P$ denotes another probability measure similar to $P$ in the sense that $Q$ is a countably additive function in $[0,1]^{\mc{E}}$.
+
+:::{note}
+
+In other words, $Q$ is chosen from the set of probability measures on the measurable space $(\Omega, \mc{E})$.
+
+:::
+
++++
+
+$Q\ll P$ means a measure $Q$ is absolutely continuous with respect to another measure $P$, i.e., 
+
+\begin{align}
+P(A)=0\implies Q(A)=0
+\end{align}
+
+for all $A$ measurable by $P$. 
+
+:::{note}
+
+The support of $Q\sim P$ is $\bigcup\Set{A|Q(A)>0}$. A $Q$-null set is a measurable set $A$ non-overlapping with the support of $Q$, i.e., with $Q(A)=0$. Hence, $Q\ll P$ means
+
+- a $Q$-null set is also a $P$-null set, or equivalently,
+- the support of $Q$ is contained by the support of $P$.
+
+:::
 
 +++
 
@@ -34,28 +61,41 @@ To consider another probability measure similar to $P$, we simply write $Q\sim P
 
 +++
 
-A measurable function $\R{Z}\in (\Omega_{\R{Z}}, \mc{E}_{\R{Z}})^{(\Omega, \mc{E})}$ is a random variable, which induces a probability space $(\Omega_{\R{Z}}, \mc{E}_{\R{Z}}, Q_{\R{Z}})$ where $Q_{\R{Z}}:=Q\circ \R{Z}$, for any $Q\sim P$.
+A letter $\R{Z}$ in upright font denotes a random variable, which is a measurable function from the measurable space $(\Omega, \mc{E})$ to another measurable space $(\Omega_{\R{Z}}, \mc{E}_{\R{Z}})$. 
 
 :::{note}
 
-$P=P_{\R{I}}$ for the identity map $\R{I}$.
+More precisely, for $\R{Z}$ to be a random variable, $\mc{E}_{\R{Z}}$ is a sigma algebra and
+
+\begin{align}
+\sigma(\R{Z})&:=\Set{\R{Z}^{-1}(A)|A\in \mc{E}_{\R{Z}}} \subseteq \mc{E}\\
+\R{Z}^{-1}(A)&:=\Set{\R{Z}^{-1}(z)|z\in A},
+\end{align}
+
+i.e., $\mc{E}_{\R{Z}}$ defines a set of events, the preimages of which through $\R{Z}$ are measurable in the original measurable space.
 
 :::
 
 +++
 
-To consider another random variable similar to $\R{Z}$, we simply write $\R{Z}'\sim \R{Z}$ to denote another measureable function $\R{Z}'$ having the same domain and range as $\R{Z}$. 
+For any $Q\sim P$, $\R{Z}$ induces a probability space $(\Omega_{\R{Z}}, \mc{E}_{\R{Z}}, Q_{\R{Z}})$ where $Q_{\R{Z}}(A):=Q(\R{Z}^{-1}(A))$ for all $A\in \mc{E}_{\R{Z}}$.
 
-To specify the distribution of a random variable, we write
+:::{admonition} **Example**
 
-- $\R{Z}\sim Q_{\R{Z}}$ to mean $P_{\R{Z}}=Q_{\R{Z}}$ for any $Q\sim P$, and
-- $\R{Z}'\sim P_{\R{Z}}$ to mean $P_{\R{Z}'}=P_{\R{Z}}$ for $\R{Z}'\sim \R{Z}$. 
-
-:::{note}
-
-To avoid ambiguity, random variables are denoted by upright capital letters.
+$P=P_{\R{I}}$ for the identity map $\R{I}:\omega \in \Omega \mapsto \omega \in \Omega_{\R{I}}:=\Omega$ and $\mc{E}_{\R{I}}=\mc{E}$.
 
 :::
+
++++
+
+$\R{Z}'\sim \R{Z}$ denotes another random variable $\R{Z}'$ similar to $\R{Z}$ in the sense that $\R{Z}'$ maps to the same measurable space as $\R{Z}$ does, i.e., $(\Omega_{\R{Z}'}, \mc{E}_{\R{Z}'})=(\Omega_{\R{Z}}, \mc{E}_{\R{Z}})$.
+
++++
+
+To specify the distribution of a random variable,
+
+- $\R{Z}\sim Q_{\R{Z}}$ means $P_{\R{Z}}=Q_{\R{Z}}$ for any $Q\sim P$, and
+- $\R{Z}'\sim P_{\R{Z}}$ means $P_{\R{Z}'}=P_{\R{Z}}$ for $\R{Z}'\sim \R{Z}$.
 
 +++
 
@@ -64,14 +104,29 @@ To avoid ambiguity, random variables are denoted by upright capital letters.
 +++
 
 For any random variable $\R{Z}$ that maps to a topological vector space, its expectation (mean) with respect to $Q\sim P$ is the Lebesgue integral
+
 \begin{align}
-E_Q[f(\R{Z})]&:=\int \R{Z} \,dQ \\
+E_Q[\R{Z}]&:=\int \R{Z} \,dQ\\
 &= \int_{\mathrlap{z\in \Omega_{\R{Z}}}} \;z \,dQ_{\R{Z}}(z)
 \end{align}
 
 where the first integral can be written explicitly as the integral $\int_{\Omega} \R{Z} \,dQ$ over the entire sample space $\Omega$ for $Q$, and the second integral can be written implicitly as the integral $\int \operatorname{id}_{\Omega_{\R{Z}}} \,dQ_{\R{Z}}$ of the identity function $\operatorname{id}_{\Omega_{\R{Z}}}$ over the sample space $\Omega_{\R{Z}}$ of $\R{Z}$.
 
-$E[\R{Z}]:=E_P[\R{Z}]$ is the expectation (with respect to the default probability measure $P$).
+$E[\R{Z}]:=E_P[\R{Z}]$ is the expectation with respect to the default probability measure $P$.
+
++++
+
+:::{note}
+
+The subscripted expectation can be avoided with $\R{Z}'\sim Q_{\R{Z}}$, which gives
+
+\begin{align}
+E[\R{Z}'] = E_Q[\R{Z}].
+\end{align}
+
+The dummy random variable $\R{Z}'$ may be further assumed to be independent of $\R{Z}$ in cases where its dependency with $\R{Z}$ is immaterial.
+
+:::
 
 +++ {"tags": []}
 
@@ -85,7 +140,7 @@ The set of density ratios w.r.t. $\R{Z}'$ is defined as
 \mc{R}_{\R{Z}'}&:=\Set{\left.r\in {[0,\infty)}^{\Omega_{\R{Z}'}} \right| E[r(\R{Z}')]=1}.
 \end{align}
 
-By the Radon-Nikodym Theorem, if $P_{\R{Z}}$ is absolutely continuous with respect to $P_{\R{Z}'}$, denoted as $P_{\R{Z}} \ll P_{\R{Z}'}$, then
+By the Radon-Nikodym Theorem, if $P_{\R{Z}} \ll P_{\R{Z}'}$, then
 
 \begin{align}
 P_{\R{Z}}(A)=\int_A r\,dP_{\R{Z}'} \quad \forall A\in \mc{E}_{\R{Z}'}
@@ -100,8 +155,20 @@ For a function $f\in {(-\infty,\infty]}^{[0,\infty)}$ strictly convex with $f(1)
 \begin{align}
 D_f(P_{\R{Z}} \| P_{\R{Z}'}) 
 &:=
-E\left[f\left(\frac{dP_{\R{Z}}}{dP_{\R{Z}'}}(\R{Z}')\right)\right]
+E\left[f\left(\frac{dP_{\R{Z}}}{dP_{\R{Z}'}}(\R{Z}')\right)\right].
 \end{align}
+
+:::{admonition} **Example**
+
+KL-divergence is the special case when $f(u) = u\log u$, in which case
+
+\begin{align}
+D(P_{\R{Z}} \| P_{\R{Z}'})&:=D_f(P_{\R{Z}} \| P_{\R{Z}'})\\
+&= E\left[\frac{dP_{\R{Z}}}{dP_{\R{Z}'}}(\R{Z}')\log \frac{dP_{\R{Z}}}{dP_{\R{Z}'}}(\R{Z}')\right]\\
+&= E\left[\log \frac{dP_{\R{Z}}}{dP_{\R{Z}'}}(\R{Z})\right].
+\end{align}
+
+:::
 
 +++
 
@@ -232,7 +299,7 @@ By the Frenchel inequality,
 F \geq [[F]^*]^*,
 \end{align}
 
-and equality holds if $F$ is convex, in which case the convex conjugation is an involution.
+where equality holds if $F$ is convex, in which case the convex conjugation is an involution.
 
 +++
 
@@ -261,16 +328,42 @@ for $F_1, F_2$ from the same space of a dual system.
 
 +++
 
-:::{admonition} **Example**
+:::{admonition} **Proposition**
 
-For any set $r'\in \mc{L}^1_{\R{Z}'} \supseteq\mc{R}\subseteq $ and $s'\in \mc{L}^\infty_{\R{Z}'}\supseteq \mc{S}$, 
+:label: pro:+d
+
+For any $F\in (-\infty, \infty]^{\mc{L}^1_{\R{Z}'}}$ and $G\in (-\infty, \infty]^{\mc{L}^\infty_{\R{Z}'}}$,
 
 \begin{align}
 [F + \delta_{\mc{R}}]^*[s'] 
-&= \inf_{s\in \mc{L}^\infty_{\R{Z}'}} F^*[s] + \sup_{r\in \mc{R}} \langle r,s'-s \rangle_{\R{Z}'}\\
+% &= \inf_{s\in \mc{L}^\infty_{\R{Z}'}} \left[F^*[s] + \sup_{r\in \mc{R}} \langle r,s'-s  \rangle_{\R{Z}'}\right]\\
 &= \inf_{s'-s\in \operatorname{Ker}(\langle \mc{R}, \cdot \rangle)} F^*[s]\\
 [G + \delta_{\mc{S}}]^*[r'] 
-&= \inf_{s\in \mc{L}^\infty_{\R{Z}'}} G^*[r] + \sup_{s\in \mc{S}} \langle r'-r,s \rangle_{\R{Z}'}\\
+% &= \inf_{r\in \mc{L}^1_{\R{Z}'}} \left[G^*[r] + \sup_{s\in \mc{S}} \langle r'-r,s \rangle_{\R{Z}'}\right]\\
+&= \inf_{r'-r\in \operatorname{Ker}(\langle \cdot, \mc{S} \rangle)} G^*[r]
+\end{align}
+
+for any $r'\in \mc{L}^1_{\R{Z}'} \supseteq\mc{R}\subseteq $ and $s'\in \mc{L}^\infty_{\R{Z}'}\supseteq \mc{S}$.
+
+:::
+
++++
+
+:::{admonition} **Proof**
+
+By the infimal convolution theorem,
+
+\begin{align}
+[F + \delta_{\mc{R}}]^*[s'] 
+&= \inf_{s\in \mc{L}^\infty_{\R{Z}'}} \bigg[F^*[s] + \underbrace{\sup_{r\in \mc{R}} \langle r,s'-s \rangle_{\R{Z}'}}_{\mathrlap{\text{$\geq 0$ with equality iff $s'-s\in \operatorname{Ker}(\langle \mc{R}, \cdot \rangle)$}}}\bigg]\\
+&= \inf_{s'-s\in \operatorname{Ker}(\langle \mc{R}, \cdot \rangle)} F^*[s]
+\end{align}
+
+Similarly,
+
+\begin{align}
+[G + \delta_{\mc{S}}]^*[r'] 
+&= \inf_{r\in \mc{L}^1_{\R{Z}'}} \left[G^*[r] + \sup_{s\in \mc{S}} \langle r'-r,s \rangle_{\R{Z}'}\right]\\
 &= \inf_{r'-r\in \operatorname{Ker}(\langle \cdot, \mc{S} \rangle)} G^*[r].
 \end{align}
 
@@ -348,14 +441,14 @@ where the expressions are obtained from the DV formula with $\mc{R} = \mc{R}_{\R
 
 +++
 
-A positive type function $K\in (-\infty, \infty)^{Z^2}$ is a reproducing kernel, which induces a reproducing kernel Hilbert space (RKHS) $\mc{H}_K\subseteq (-\infty, \infty)^{Z}$ with inner product $\langle\cdot ,\cdot\rangle_K$ (and norm $\norm{\cdot}_K$) satisfying the reproducing property that, for all $z\in Z$ and $t\in \mc{H}_K$,
+Given a field $Z$, a positive type function $K\in (-\infty, \infty)^{Z^2}$ is a reproducing kernel, which induces a reproducing kernel Hilbert space (RKHS) $\mc{H}_K\subseteq (-\infty, \infty)^{Z}$ with inner product $\langle\cdot ,\cdot\rangle_K$ (and norm $\norm{\cdot}_K$) satisfying the reproducing property that, for all $z\in Z$ and $t\in \mc{H}_K$,
 
 \begin{align}
 \overbrace{K(\cdot, z)}^{K_z :=} &\in \mc{H}_K\\
-\langle t, K_z\rangle_K &= s(z).
+\langle t, K_z\rangle_K &= t(z).
 \end{align}
 
-$K_z$ is called the $z$-point evaluation embedding. It is the unique element in $\mc{H}$ such such that $t\in \mc{H}_K\mapsto \langle t, K_z\rangle_K$ gives the point evaluation function $t\in \mc{H}_K \mapsto s(z)$ at $z$. The mapping from $z\in Z$ to $K_z$ is called the canonical feature map.
+$K_z$ is called the $z$-point evaluation embedding. It is the unique element in $\mc{H}$ such that $t\in \mc{H}_K\mapsto \langle t, K_z\rangle_K$ gives the point evaluation function $t\in \mc{H}_K \mapsto s(z)$ at $z$. The mapping from $z\in Z$ to $K_z$ is called the canonical feature map.
 
 +++
 
@@ -363,10 +456,22 @@ For any $\R{Z}'$ with $Z\supseteq \Omega_{\R{Z}'}$, the restriction of $\mc{H}_K
 
 \begin{align}
 \mc{H}_K|_{\R{Z}'} &:=\Set{\left.t|_{\Omega_{\R{Z}'}}\right|t\in \mc{H}_K }&& \text{where}\\
-t|_{\Omega_{\R{Z}'}} &: z\in \Omega_{\R{Z}'} \mapsto s(z),
+t|_{\Omega_{\R{Z}'}} &: z\in \Omega_{\R{Z}'} \mapsto t(z),
 \end{align}
 
-which is the function $s$ restricted to the domain $\Omega_{\R{Z}'}$.
+which is the function $t$ restricted to the domain $\Omega_{\R{Z}'}$.
+
++++
+
+If $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$, we define for any functional $M\in (-\infty, \infty]^{\mc{H}_K}$,
+
+\begin{align}
+M|_{\R{Z}'}[s]&:= \inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}= s}} M[t]
+\end{align}
+
+for all $s\in \mc{L}^\infty_{\R{Z}'}$.
+
+:::{note}
 
 By the reproducing property, the condition $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ is equivalent to
 
@@ -374,13 +479,15 @@ By the reproducing property, the condition $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^
 K_z|_{\Omega_{\R{Z}'}} &\in \mc{L}^{\infty}_{\R{Z}'}&& \forall z\in Z.
 \end{align}
 
+:::
+
 +++
 
 ### Correlation Embedding
 
 +++
 
-By the Riesz representation theorem, each bounded linear functional on a RKHS has a unique embedding in the RKHS. An example is the correlation embedding defined below.
+By the Riesz representation theorem, each bounded linear functional on an RKHS has a unique embedding in the RKHS. An example is the correlation embedding defined below.
 
 +++
 
@@ -405,13 +512,12 @@ The following result, which is stated in a way analogous to the reproducing prop
 
 :::{admonition} **Proposition**
 
-
 Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'$ and reproducing kernel $K$. For all $r\in \mc{L}^1_{\R{Z}'}$ and $t\in \mc{H}_K$, 
 
 \begin{align}
 \mu_{\R{Z}'}[r] &\in \mc{H}_K \\
 \langle t, \mu_{\R{Z}'}[r]\rangle_K &= \langle r, t|_{\Omega_{\R{Z}'}}\rangle_{\R{Z}'}\\
-&=E[r(\R{Z}')s(\R{Z}')].
+&=E[r(\R{Z}')t(\R{Z}')].
 \end{align}
 
 :::
@@ -442,6 +548,93 @@ which gives $E[r(\R{Z}')K_z(\R{Z}')]$ by definition.
 +++
 
 ### Kernel-Based Formula
+
++++
+
+A consequence of the Riesz representation theorem is that, for any reproducing kernel $K$, $(\mc{H}_K, \mc{H}_K, \langle \cdot, \cdot \rangle_K)$ form a dual system. Hence, the convex conjugate of any functional $M\in (-\infty, \infty]^{\mc{H}_K}$ can be written as
+
+\begin{align}
+M^*[u] := \sup_{t\in \mc{H}_K}\langle t, u\rangle_K - M[t]
+\end{align}
+
+for all $u\in \mc{H}_K$.
+
++++
+
+:::{admonition} **Lemma**
+
+Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'$ and reproducing kernel $K$. For all $M\in (-\infty, \infty]^{\mc{H}_K}$ and $G\in (-\infty, \infty]^{\mc{L}^{\infty}_{\R{Z}'}}$,
+
+\begin{align}
+M|_{\R{Z}'}^*[r]& =  M^*[\mu_{\R{Z}'}[r]]\\
+[G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\mu_{\R{Z}'}[r'-r]]
+\end{align}
+
+for all $r\in \mc{L}^1_{\R{Z}'}$.
+
+:::
+
++++
+
+:::{admonition} **Proof**
+
+To show the first equality:
+
+\begin{align}
+M|_{\R{Z}'}^*[r]& = \sup_{s\in \mc{L}^\infty_{\R{Z}'}} \langle r, s \rangle_{\R{Z}'} - \underbrace{M|_{\R{Z}'}[s]}_{\inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}= s}} M[t]}\\
+&= \sup_{t\in \mc{H}_K} \sup_{\substack{s\in \mc{L}^\infty_{\R{Z}'}:\\ t|_{\Omega_{\R{Z}'}}= s}} \langle r, s \rangle_{\R{Z}'} - M[t]\\
+&= \sup_{t\in \mc{H}_K} \underbrace{\langle r, t|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'}}_{\langle t, \mu_{\R{Z}'}[r]\rangle_K} - M[t]\\
+&= M^*[\mu_{\R{Z}'}[r]].
+\end{align}
+
+By the infimal convolution theorem,
+
+\begin{align}
+[G+M|_{\R{Z}'}]^*[r']
+&= [G^*\square M|_{\R{Z}'}^*][r']\\
+&= \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] + \underbrace{M|_{\R{Z}'}^*[r'-r]}_{M^*[\mu_{\R{Z}'}[r'-r]]}.
+\end{align}
+
+:::
+
++++
+
+:::{admonition} **Example**
+
+Consider for some $\lambda>0$,
+
+\begin{align}
+M[t]&:=\frac1{4\lambda} \norm{t}_K \\
+&\xrightarrow{\lambda\to \infty} 0.
+\end{align}
+
+Then,
+
+\begin{align}
+M^*[u] 
+&:= \sup_{t\in \mc{H}_K} \langle t, u\rangle_K - \underbrace{M[t]}_{\frac1{4\lambda} \norm{t}_K}\\
+&=  \sup_{t\in \mc{H}_K} \frac{1}{4\lambda}\big(\norm{2\lambda u}_K  - \underbrace{\norm{t-2\lambda u}_K}_{\mathrlap{\text{$\geq 0$ with equality iff $t=2\lambda u$}}} \big) \\
+&= \lambda\norm{u}_K\\
+&\xrightarrow{\lambda\to \infty} \delta_{\Set{0}}[u].
+\end{align}
+
+By the above Lemma,
+
+\begin{align}
+M|_{\R{Z}'}^*[r]& =  M^*[\mu_{\R{Z}'}[r]]\\
+&= \lambda\norm{\mu_{\R{Z}'}[r]}_K\\
+&\xrightarrow{\lambda\to \infty} \delta_{\Set{0}}[\mu_{\R{Z}'}[r]]\\
+[G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\mu_{\R{Z}'}[r'-r]]\\
+&=\inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  \lambda\norm{\mu_{\R{Z}'}[r'-r]}_K\\
+&\xrightarrow{\lambda\to \infty} \inf_{\substack{r\in \mc{L}^1_{\R{Z}'}:\\ \mu_{\R{Z}'}[r']=\mu_{\R{Z}'}[r]}} G^*[r].
+\end{align}
+
+
+:::
+
++++
+
+Restricting the functional in the DV lower bound to a RKHS, we obtain an alternative variational formula:
 
 +++
 
@@ -478,48 +671,34 @@ in which case $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ implies $r\in \le
 Consider any $r' \in\left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$.
 
 \begin{align}
-\alpha(\lambda)&=\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \frac1{4\lambda} \norm{t}_K\\
-&=\sup_{s\in \mc{L}^\infty(\R{Z}')} \sup_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}} \underbrace{E[t(\R{Z})]}_{\mathrlap{\begin{aligned}&=E[s(\R{Z})]\\&= \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'}\end{aligned}}} - F^*[\underbrace{t|_{\Omega_{\R{Z}'}}}_{=s}] - \frac1{4\lambda} \norm{t}_K\\
-&=\sup_{s\in \mc{L}^\infty(\R{Z}')} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - F^*[s] - \overbrace{\inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}}\frac1{4\lambda} \norm{t}_K}^{G[s]:=}\\
-&=\sup_{s\in \mc{L}^\infty(\R{Z}')} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - (F^*+G)[s]\\
-&=[F^*+G]^*[r']
+\alpha(\lambda)&=\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \overbrace{\frac1{4\lambda} \norm{t}_K}^{M[t]:=}\\
+&=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \sup_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}} \underbrace{E[t(\R{Z})]}_{\mathrlap{\begin{aligned}&=E[s(\R{Z})]\\&= \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'}\end{aligned}}} - F^*[\underbrace{t|_{\Omega_{\R{Z}'}}}_{s}] - \frac1{4\lambda} \norm{t}_K\\
+&=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - F^*[s] - \underbrace{\inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}}\frac1{4\lambda} \norm{t}_K}_{M|_{\R{Z}'}[s]}\\
+&=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - (F^*+M|_{\R{Z}'})[s]\\
+&=[F^*+M|_{\R{Z}'}]^*[r']
 \end{align}
 
-To compute the above convex conjugate, note that
+By the above Lemma and example, 
 
 \begin{align}
-G^*[r'] 
-&:= \sup_{s\in \mc{L}^\infty_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - G[s]\\
-&= \sup_{s\in \mc{L}^\infty_{\R{Z}'}} \langle r', s\rangle_{\R{Z}'} - \frac1{4\lambda} \inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}}  \norm{t}_K\\
-&=  \sup_{t\in \mc{H}_K} \underbrace{\sup_{\substack{s\in \mc{L}^\infty_{\R{Z}'}:\\ t|_{\Omega_{\R{Z}'}}=s}} \langle r', s\rangle_{\R{Z}'}}_{\mathrlap{\begin{aligned}
-&=\langle r', t|_{\Omega_{\R{Z}'}}\rangle_{\R{Z}'}\\
-&= \langle t, \mu_{\R{Z}'}[r']\rangle_K 
-\end{aligned}
-}} - \frac1{4\lambda}   \norm{t}_K\\
-&= \sup_{t\in \mc{H}_K} \left(\norm{2\lambda\mu_{\R{Z}'}[r']}_K  - \norm{t-2\lambda\mu_{\R{Z}'}[r']}_K \right)\frac1{4\lambda}\\
-&= \lambda \norm{\mu_{\R{Z}'}[r']}_K
+\alpha(\lambda)
+%&=[F^*+M|_{\R{Z}'}]^*[r']\\
+%&= [F\square M|_{\R{Z}'}^*][r']\\
+&= \inf_{r\in \mc{L}^1_{\R{Z}'}} \underbrace{F[r]}_{E[f(r(\R{Z}))] + \delta_{\mc{R}}[r]} + \underbrace{M|_{\R{Z}'}^*[r'-r]}_{M^*[\underbrace{\mu_{\R{Z}'}[r'-r]}_{\underbrace{\mu_{\R{Z}'}[r']}_{E[K_{\R{Z}}]}-\mu_{\R{Z}'}[r]}]}\\
+&= \inf_{r\in \mc{L}^1_{\R{Z}'}} E[f(r(\R{Z}))] + \delta_{\mc{R}}[r] + M^*[E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]]\\
+&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))]  + \underbrace{M^*[E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]]}_{\lambda \norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K}\\
+&= \beta(\lambda).
 \end{align}
 
-By the infimal convolution theorem,
+The bound is maximized with $\lambda\to \infty$, which gives
 
 \begin{align}
-\alpha(\lambda)&=[F^*+G]^*[r']\\
-&= [F\square G^*][r']\\
-&= \inf_{r\in \mc{L}^1_{\R{Z}'}} F[r] + G^*[r'-r]\\
-&= \inf_{r\in \mc{L}^1_{\R{Z}'}} E[f(r(\R{Z}))] + \delta_{\mc{R}}[r] + \lambda \norm{\mu_{\R{Z}'}[r'-r]}_K \\
-&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))] + \lambda \norm*{\underbrace{\mu_{\R{Z}'}[r']}_{=E[K_{\R{Z}}]}-\mu_{\R{Z}'}[r]}_K\\
-&= \beta(\lambda)
-\end{align}
-
-Further maximizing the bound over $\lambda$ gives
-
-\begin{align}
-\sup_{\lambda >0} \beta(\lambda)
-&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))] + \sup_{\lambda >0} \lambda \norm*{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K\\
+\sup_{\lambda >0} \beta(\lambda)=\limsup_{\lambda\to \infty}\beta(\lambda)
+%&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))] + \sup_{\lambda >0} \lambda \norm*{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K\\
 &= \inf_{\substack{r\in \mc{R}:\\ \mu_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
 \end{align}
 
-as desired. The bound is tight if $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ imply $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$. This gives the desired equality condition because
+as desired. The bound is tight if $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ imply $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$. The desired equality condition follows because
 
 \begin{align}
 r\in \mc{R} &\iff r-r' \in \mc{R}-\Set{\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}}\\

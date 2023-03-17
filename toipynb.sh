@@ -5,7 +5,7 @@ for f in $(find . -name '*.md' -not -path '*/.*')
 do
     echo "processing f=\"${f}\":"
     declare -a cmds=(
-        'jupytext --from md:myst --to ipynb -o "../myst/${f/%.md/.ipynb}" "${f}"'
+        'jupytext --from md:myst --to ipynb -o "../ipynb/${f/%.md/.ipynb}" "${f}"'
     )
     for c in "${cmds[@]}"
     do

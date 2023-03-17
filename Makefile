@@ -37,6 +37,6 @@ myst:
 ipynb:
 	bash toipynb.sh
 
-modules := all env clean-env clean build page myst
+modules := all env clean-env clean build page myst ipynb
 
 .PHONY: $(modules)
