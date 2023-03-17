@@ -570,7 +570,7 @@ M|_{\R{Z}'}^*[r]& =  M^*[\mu_{\R{Z}'}[r]]\\
 [G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\mu_{\R{Z}'}[r'-r]]
 \end{align}
 
-for all $r\in \mc{L}^1_{\R{Z}'}$.
+for all $r'\in \mc{L}^1_{\R{Z}'}$.
 
 :::
 
