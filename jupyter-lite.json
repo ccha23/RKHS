@@ -158,12 +158,10 @@
     "mathjaxConfig": "TeX-AMS_CHTML-full,Safe",
     "settingsOverrides": {
       "@jupyterlite/webrtc-docprovider:plugin": {
-        "disabled": true,
-        "roomPrefix": "cs1302",
+        "disabled": false,
+        "roomPrefix": "RKHS",
         "signalingUrls": [
-          "wss://y-webrtc-signaling-eu.herokuapp.com",
-          "wss://y-webrtc-signaling-us.herokuapp.com",
-          "wss://signaling.yjs.dev"
+          "wss://deep.cs.cityu.edu.hk:18111/"
         ],
         "usercolor": "f57c00",
         "username": "Anonymous User"
