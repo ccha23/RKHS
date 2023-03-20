@@ -204,13 +204,13 @@ More explicitly:
 - $\mc{L}^1_{\R{Z}'}$ is the set of measureable functions $r$ of $\R{Z}'$ with non-degenerate $1$-norm w.r.t. $P_{\R{Z}'}$
 
     \begin{align}
-    \norm{r}_{\mc{L}^1_{\R{Z}'}} := \int \abs{r}\,dP_{\R{Z}'}.
+    \norm{r}^2_{\mc{L}^1_{\R{Z}'}} := \int \abs{r}\,dP_{\R{Z}'}.
     \end{align}
 
 - $\mc{L}^\infty_{\R{Z}'}$ is the set of measurable functions $s$ of $\R{Z}'$ with non-degenerate $\infty$-norm w.r.t. $P_{\R{Z}'}$
 
     \begin{align}
-    \norm{s}_{\mc{L}^\infty_{\R{Z}'}}:=\inf\Set{c\geq 0 \left| \forall A\in \mc{E}_{\R{Z}'},\sup_{z\in A} \abs{s(z)} \leq c \text{ or } P_{\R{Z}'}(A)=0\right.},
+    \norm{s}^2_{\mc{L}^\infty_{\R{Z}'}}:=\inf\Set{c\geq 0 \left| \forall A\in \mc{E}_{\R{Z}'},\sup_{z\in A} \abs{s(z)} \leq c \text{ or } P_{\R{Z}'}(A)=0\right.},
     \end{align}
     
     which is the supremum up to a $P_{\R{Z}'}$-null set.
@@ -330,8 +330,6 @@ for $F_1, F_2$ from the same space of a dual system.
 
 :::{admonition} **Proposition**
 
-:label: pro:+d
-
 For any $F\in (-\infty, \infty]^{\mc{L}^1_{\R{Z}'}}$ and $G\in (-\infty, \infty]^{\mc{L}^\infty_{\R{Z}'}}$,
 
 \begin{align}
@@ -441,7 +439,7 @@ where the expressions are obtained from the DV formula with $\mc{R} = \mc{R}_{\R
 
 +++
 
-Given a field $Z$, a positive type function $K\in (-\infty, \infty)^{Z^2}$ is a reproducing kernel, which induces a reproducing kernel Hilbert space (RKHS) $\mc{H}_K\subseteq (-\infty, \infty)^{Z}$ with inner product $\langle\cdot ,\cdot\rangle_K$ (and norm $\norm{\cdot}_K$) satisfying the reproducing property that, for all $z\in Z$ and $t\in \mc{H}_K$,
+Given a field $Z$, a positive type function $K\in (-\infty, \infty)^{Z^2}$ is a reproducing kernel, which induces a reproducing kernel Hilbert space (RKHS) $\mc{H}_K\subseteq (-\infty, \infty)^{Z}$ with inner product $\langle\cdot ,\cdot\rangle_K$ (and norm $\norm{\cdot}^2_K$) satisfying the reproducing property that, for all $z\in Z$ and $t\in \mc{H}_K$,
 
 \begin{align}
 \overbrace{K(\cdot, z)}^{K_z :=} &\in \mc{H}_K\\
@@ -471,13 +469,42 @@ M|_{\R{Z}'}[s]&:= \inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}= s}} M[t
 
 for all $s\in \mc{L}^\infty_{\R{Z}'}$.
 
-:::{note}
++++
+
+:::{admonition} **Proposition**
+
+For any $\R{Z}'$ and reproducing kernel $K\in (-\infty,\infty)^{Z^2}$ with $\Omega_{\R{Z}'}\subseteq Z$, we have  $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^\infty_{\R{Z}'}$ iff 
+
+\begin{align}
+E[K(\R{Z}', \R{Z}')] < \infty.
+\end{align}
+
+:::
+
++++
+
+:::{admonition} **Proof**
 
 By the reproducing property, the condition $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ is equivalent to
 
 \begin{align}
-K_z|_{\Omega_{\R{Z}'}} &\in \mc{L}^{\infty}_{\R{Z}'}&& \forall z\in Z.
+K_z|_{\Omega_{\R{Z}'}} &\in \mc{L}^{\infty}_{\R{Z}'}&& \forall z\in Z,
 \end{align}
+
+which happens iff
+
+\begin{align}
+1&=P\left[\sup_{z\in Z} K_z|_{\Omega_{\R{Z}'}}({\R{Z}'})< \infty\right] \\
+&= P\bigg[\sup_{z\in Z} \underbrace{K_z({\R{Z}'})}_{
+\begin{aligned}
+&\langle K_z, K_{\R{Z}'}\rangle_K\\
+&\leq \norm{K_{\R{Z}'}}^2_K
+\end{aligned}}< \infty\bigg]\\
+&= P[K(\R{Z}', \R{Z}')<\infty],
+\end{align}
+
+which holds iff $E[K(\R{Z}', \R{Z}')]<\infty$ as desired.
+
 
 :::
 
@@ -551,7 +578,7 @@ which gives $E[r(\R{Z}')K_z(\R{Z}')]$ by definition.
 
 +++
 
-A consequence of the Riesz representation theorem is that, for any reproducing kernel $K$, $(\mc{H}_K, \mc{H}_K, \langle \cdot, \cdot \rangle_K)$ form a dual system. Hence, the convex conjugate of any functional $M\in (-\infty, \infty]^{\mc{H}_K}$ can be written as
+A consequence of the Riesz representation theorem is that, for any reproducing kernel $K$, $(\mc{H}_K, \mc{H}_K, \langle \cdot, \cdot \rangle_K)$ forms a dual system. Hence, the convex conjugate of any functional $M\in (-\infty, \infty]^{\mc{H}_K}$ can be written as
 
 \begin{align}
 M^*[u] := \sup_{t\in \mc{H}_K}\langle t, u\rangle_K - M[t]
@@ -604,7 +631,7 @@ By the infimal convolution theorem,
 Consider for some $\lambda>0$,
 
 \begin{align}
-M[t]&:=\frac1{4\lambda} \norm{t}_K \\
+M[t]&:=\frac1{4\lambda} \norm{t}^2_K \\
 &\xrightarrow{\lambda\to \infty} 0.
 \end{align}
 
@@ -612,9 +639,9 @@ Then,
 
 \begin{align}
 M^*[u] 
-&:= \sup_{t\in \mc{H}_K} \langle t, u\rangle_K - \underbrace{M[t]}_{\frac1{4\lambda} \norm{t}_K}\\
+&:= \sup_{t\in \mc{H}_K} \langle t, u\rangle_K - \underbrace{M[t]}_{\frac1{4\lambda} \norm{t}^2_K}\\
 &=  \sup_{t\in \mc{H}_K} \frac{1}{4\lambda}\big(\norm{2\lambda u}_K  - \underbrace{\norm{t-2\lambda u}_K}_{\mathrlap{\text{$\geq 0$ with equality iff $t=2\lambda u$}}} \big) \\
-&= \lambda\norm{u}_K\\
+&= \lambda\norm{u}^2_K\\
 &\xrightarrow{\lambda\to \infty} \delta_{\Set{0}}[u].
 \end{align}
 
@@ -622,10 +649,10 @@ By the above Lemma,
 
 \begin{align}
 M|_{\R{Z}'}^*[r]& =  M^*[\mu_{\R{Z}'}[r]]\\
-&= \lambda\norm{\mu_{\R{Z}'}[r]}_K\\
+&= \lambda\norm{\mu_{\R{Z}'}[r]}^2_K\\
 &\xrightarrow{\lambda\to \infty} \delta_{\Set{0}}[\mu_{\R{Z}'}[r]]\\
 [G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\mu_{\R{Z}'}[r'-r]]\\
-&=\inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  \lambda\norm{\mu_{\R{Z}'}[r'-r]}_K\\
+&=\inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  \lambda\norm{\mu_{\R{Z}'}[r'-r]}^2_K\\
 &\xrightarrow{\lambda\to \infty} \inf_{\substack{r\in \mc{L}^1_{\R{Z}'}:\\ \mu_{\R{Z}'}[r']=\mu_{\R{Z}'}[r]}} G^*[r].
 \end{align}
 
@@ -643,8 +670,8 @@ Restricting the functional in the DV lower bound to a RKHS, we obtain an alterna
 For $P_{\R{Z}}\ll P_{\R{Z}'}$, a function $f\in {(-\infty,\infty]}^{[0,\infty)}$ strictly convex with $f(1)=0$, and a reproducing kernel $K\subseteq (-\infty, \infty)^{Z^2}$ such that $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$,
 
 \begin{align}
-D_f(P_{\R{Z}}\|P_{\R{Z}'})&\geq \sup_{\lambda>0} \underbrace{\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \frac1{4\lambda} \norm{t}_K}_{\alpha(\lambda):=}\\
-&= \sup_{\lambda>0} \overbrace{\inf_{r\in \mc{R}} E\left[(f(r(\R{Z})) \right] + \lambda\norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K}^{\beta(\lambda):=}\\
+D_f(P_{\R{Z}}\|P_{\R{Z}'})&\geq \sup_{\lambda>0} \underbrace{\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \frac1{4\lambda} \norm{t}^2_K}_{\alpha(\lambda):=}\\
+&= \sup_{\lambda>0} \overbrace{\inf_{r\in \mc{R}} E\left[(f(r(\R{Z})) \right] + \lambda\norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}^2_K}^{\beta(\lambda):=}\\
 &= \inf_{\substack{r\in \mc{R}:\\ \mu_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
 \end{align}
 
@@ -671,9 +698,9 @@ in which case $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ implies $r\in \le
 Consider any $r' \in\left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$.
 
 \begin{align}
-\alpha(\lambda)&=\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \overbrace{\frac1{4\lambda} \norm{t}_K}^{M[t]:=}\\
-&=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \sup_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}} \underbrace{E[t(\R{Z})]}_{\mathrlap{\begin{aligned}&=E[s(\R{Z})]\\&= \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'}\end{aligned}}} - F^*[\underbrace{t|_{\Omega_{\R{Z}'}}}_{s}] - \frac1{4\lambda} \norm{t}_K\\
-&=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - F^*[s] - \underbrace{\inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}}\frac1{4\lambda} \norm{t}_K}_{M|_{\R{Z}'}[s]}\\
+\alpha(\lambda)&=\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \overbrace{\frac1{4\lambda} \norm{t}^2_K}^{M[t]:=}\\
+&=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \sup_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}} \underbrace{E[t(\R{Z})]}_{\mathrlap{\begin{aligned}&=E[s(\R{Z})]\\&= \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'}\end{aligned}}} - F^*[\underbrace{t|_{\Omega_{\R{Z}'}}}_{s}] - \frac1{4\lambda} \norm{t}^2_K\\
+&=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - F^*[s] - \underbrace{\inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}=s}}\frac1{4\lambda} \norm{t}^2_K}_{M|_{\R{Z}'}[s]}\\
 &=\sup_{s\in \mc{L}^\infty_{\R{Z}'}} \left\langle r', s(\R{Z}) \right\rangle_{\R{Z}'} - (F^*+M|_{\R{Z}'})[s]\\
 &=[F^*+M|_{\R{Z}'}]^*[r']
 \end{align}
@@ -686,7 +713,7 @@ By the above Lemma and example,
 %&= [F\square M|_{\R{Z}'}^*][r']\\
 &= \inf_{r\in \mc{L}^1_{\R{Z}'}} \underbrace{F[r]}_{E[f(r(\R{Z}))] + \delta_{\mc{R}}[r]} + \underbrace{M|_{\R{Z}'}^*[r'-r]}_{M^*[\underbrace{\mu_{\R{Z}'}[r'-r]}_{\underbrace{\mu_{\R{Z}'}[r']}_{E[K_{\R{Z}}]}-\mu_{\R{Z}'}[r]}]}\\
 &= \inf_{r\in \mc{L}^1_{\R{Z}'}} E[f(r(\R{Z}))] + \delta_{\mc{R}}[r] + M^*[E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]]\\
-&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))]  + \underbrace{M^*[E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]]}_{\lambda \norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K}\\
+&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))]  + \underbrace{M^*[E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]]}_{\lambda \norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}^2_K}\\
 &= \beta(\lambda).
 \end{align}
 
