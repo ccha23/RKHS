@@ -471,45 +471,6 @@ for all $s\in \mc{L}^\infty_{\R{Z}'}$.
 
 +++
 
-:::{admonition} **Proposition**
-
-For any $\R{Z}'$ and reproducing kernel $K\in (-\infty,\infty)^{Z^2}$ with $\Omega_{\R{Z}'}\subseteq Z$, we have  $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^\infty_{\R{Z}'}$ iff 
-
-\begin{align}
-E[K(\R{Z}', \R{Z}')] < \infty.
-\end{align}
-
-:::
-
-+++
-
-:::{admonition} **Proof**
-
-By the reproducing property, the condition $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ is equivalent to
-
-\begin{align}
-K_z|_{\Omega_{\R{Z}'}} &\in \mc{L}^{\infty}_{\R{Z}'}&& \forall z\in Z,
-\end{align}
-
-which happens iff
-
-\begin{align}
-1&=P\left[\sup_{z\in Z} K_z|_{\Omega_{\R{Z}'}}({\R{Z}'})< \infty\right] \\
-&= P\bigg[\sup_{z\in Z} \underbrace{K_z({\R{Z}'})}_{
-\begin{aligned}
-&\langle K_z, K_{\R{Z}'}\rangle_K\\
-&\leq \norm{K_{\R{Z}'}}^2_K
-\end{aligned}}< \infty\bigg]\\
-&= P[K(\R{Z}', \R{Z}')<\infty],
-\end{align}
-
-which holds iff $E[K(\R{Z}', \R{Z}')]<\infty$ as desired.
-
-
-:::
-
-+++
-
 ### Correlation Embedding
 
 +++
@@ -520,10 +481,10 @@ By the Riesz representation theorem, each bounded linear functional on an RKHS h
 
 :::{admonition} **Definition** (Correlation map)
 
-For some reproducing kernel $K\subseteq (-\infty, \infty)^{Z^2}$ and $\R{Z}'$ such that $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$, define for all 
+For some reproducing kernel $K\subseteq (-\infty, \infty)^{Z^2}$ and $\R{Z}'$ such that $\Omega_{\R{Z}'}\subseteq Z$, define
 
 \begin{align}
- \mu_{\R{Z}'}[r](z)&:=\langle r, K_z|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'}\\
+ \rho_{\R{Z}'}[r](z)&:=\langle r, K_z|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'}\\
  &= E[r(\R{Z}')K_{\R{Z}'}(z)]
 \end{align}
 
@@ -533,19 +494,20 @@ for all $r\in \mc{L}^1_{\R{Z}'}$ and $z\in Z$.
 
 +++
 
-The following result, which is stated in a way analogous to the reproducing property, shows that $\mu_{\R{Z}'}[r]$ is the $r$-correlation embedding with respect to the measure $P_{\R{Z}'}$, and $\mu_{\R{Z}'}$ is the correlation map.
+The following result, which is stated in a way analogous to the reproducing property, shows that $\rho_{\R{Z}'}[r]$ is the $r$-correlation embedding with respect to the measure $P_{\R{Z}'}$, and $\rho_{\R{Z}'}$ is the correlation map.
 
 +++
 
 :::{admonition} **Proposition**
 
-Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'$ and reproducing kernel $K$. For all $r\in \mc{L}^1_{\R{Z}'}$ and $t\in \mc{H}_K$, 
+Consider any $\R{Z}'$ and reproducing kernel $K\in (-\infty,\infty)^{Z^2}$ with $\Omega_{\R{Z}'}\subseteq Z$. Suppose $\rho_{\R{Z}'}[r] \in \mc{H}_K$ for some $r\in \mc{L}^1_{\R{Z}'}$. 
 
 \begin{align}
-\mu_{\R{Z}'}[r] &\in \mc{H}_K \\
-\langle t, \mu_{\R{Z}'}[r]\rangle_K &= \langle r, t|_{\Omega_{\R{Z}'}}\rangle_{\R{Z}'}\\
+\langle t, \rho_{\R{Z}'}[r]\rangle_K &= \langle r, t|_{\Omega_{\R{Z}'}}\rangle_{\R{Z}'}\\
 &=E[r(\R{Z}')t(\R{Z}')].
 \end{align}
+
+for all $t\in \mc{H}_K$.
 
 :::
 
@@ -553,22 +515,107 @@ Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'
 
 :::{admonition} **Proof**
 
-Recall that
+Since $\rho_{\R{Z}'}[r]\in \mc{H}_K$, the following inner product is non-degenerate:
 
 \begin{align}
-\mu_{\R{Z}'}[r](z)&= \langle r, K_z|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'},
-\end{align}
-
-i.e., the dual pairing of $r$ with the $z$-point evaluation embedding restricted to $\Omega_{\R{Z}'}$. Since $K_z|_{\Omega_{\R{Z}'}}\in  \mc{L}^{\infty}_{\R{Z}'}$, the dual pairing is a bounded linear function of $r\in \mc{L}^1_{\R{Z}'}$, and so $\mu_{\R{Z}'}[r]\in \mc{H}_K$ as desired. Furthermore,
-
-\begin{align}
-\langle t, \mu_{\R{Z}'}[r]\rangle_K
+\langle t, \rho_{\R{Z}'}[r]\rangle_K
 &=\langle t, \langle r, K_z\rangle_{\R{Z}'}\rangle_K\\
-&=\langle r, \langle t, K_z\rangle_K\rangle_{\R{Z}'} && \text{by linearity}\\
-&=\langle r, s \rangle_{\R{Z}'} && \text{by the reproducing property},
+&=\langle r, z\in \Omega_{\R{Z}'}\mapsto \langle t, K_z\rangle_K\rangle_{\R{Z}'} && \text{by linearity}\\
+&=\langle r, t|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'} && \text{by the reproducing property},
 \end{align}
 
 which gives $E[r(\R{Z}')K_z(\R{Z}')]$ by definition.
+
+:::
+
++++
+
+The following gives the sufficient conditions for the correlation map to return a function in the RKHS.
+
++++
+
+:::{admonition} **Proposition**
+
+Consider any reproducing kernel $K\subseteq (-\infty, \infty)^{Z^2}$ and $\R{Z}'$ such that $\Omega_{\R{Z}'}\subseteq Z$. For all non-negative $r\in \mc{L}^1_{\R{Z}'}\cap [0,\infty)^Z$,
+
+$$
+\begin{align}
+\rho_{\R{Z}'}[r] &\in \mc{H}_K
+\end{align}
+$$ (mur_in_HK)
+
+if $K(\R{Z}', \R{Z}')$ is finite almost surely, i.e., 
+
+$$
+P[K(\R{Z}',\R{Z}')<\infty]=1,
+$$ (K_finite)
+
+which holds if $K(\R{Z}', \R{Z}')$ has a finite mean, i.e., 
+
+$$
+E[K(\R{Z}',\R{Z}')]<\infty.
+$$ (EK_finite)
+
+Furthermore, {eq}`mur_in_HK` holds for all (not necessarily non-negative) $r\in \mc{L}^1_{\R{Z}'}$ if $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$, which holds if $K_z|_{\Omega_{\R{Z}'}}$ is bounded for all $z\in Z$. {eq}`mur_in_HK` also implies {eq}`K_finite`.
+
+:::
+
++++
+
+:::{admonition} **Proof**
+
+Define for $t\in \mc{H}_K$ the linear functional
+
+\begin{align}
+\rho[t]&:= \langle r, t|_{\Omega_{\R{Z}'}}\rangle_K\\
+&= E[r(\R{Z}')t(\R{Z}')]
+\end{align}
+
+To show $\rho_{\R{Z}'}[r]\in \mc{H}_K$, it suffices to show that $\rho$ is bounded because then, by the Riesz representation theorem, there exists an embedding $\rho'\in \mc{H}_K$ such that
+
+\begin{align}
+\rho[t] = \langle t, \rho'\rangle_K
+\end{align}
+
+in which case
+
+\begin{align}
+\rho_{\R{Z}'}[r](z) = \rho[K_z] = \langle K_z, \rho'\rangle_K = \rho'(z)
+\end{align}
+
+for all $z\in Z$. Hence, $\rho_{\R{Z}'}[r]=\rho'\in \mc{H}_K$ as desired.
+
+Consider the condition $\mc{H}|_{\Omega_{\R{Z}'}}\subseteq \mc{L}^\infty_{\R{Z}'}$ first. Then, $\rho[t]$ is bounded because $t|_{\Omega_{\R{Z}'}}\in \mc{L}^1_{\R{Z}'}$ and the dual pairing $\langle r, s\rangle_{\R{Z}'}$ is bounded for all $r\in \mc{L}^1_{\R{Z}'}$ and all $s\in \mc{L}^\infty_{\R{Z}'}$, which applies to $s=t|_{\Omega_{\R{Z}'}}$ in particular.
+
+To prove the remaining conditions, note that
+
+\begin{align}
+\abs{\rho[t]} 
+&= \abs{E[r(\R{Z}')\langle t, K_{\R{Z}'}\rangle_K]} && \text{by reproducing property}\\
+&\leq E[\abs{r(\R{Z}')\langle t, K_{\R{Z}'}\rangle_K}] && \text{by Jensen's inequality}\\
+&\leq E[\abs{r(\R{Z}')}\abs{\langle t, K_{\R{Z}'}\rangle_K}]\\
+&\leq \underbrace{E[\abs{r(\R{Z}')} \norm{K_{\R{Z}'}}^2_K]}_{\alpha:=}\underbrace{\norm{t}^2_K}_{< \infty} && \text{by Cauchy-Schwarz Inequality}
+\end{align}
+
+To bound $\beta$, note that
+
+\begin{align}
+&&& E[K(\R{Z}',\R{Z}')]<\infty\\
+&\implies && P[K(\R{Z}',\R{Z}') < \infty]=1 && \text{by Markov inequality}\\
+&\iff && z\mapsto \norm{K_z}^2_K\in \mc{L}^\infty_{\R{Z}'} && \text{$\because K(z,z)=\norm{K_z}^2_K$. }\\
+&\iff && \forall r\in \mc{L}^1_{\R{Z}'}, \abs{E[r(\R{Z}')\norm{K_{\R{Z}'}}^2_K]}<\infty && \text{by duality.}\\
+&\implies && \forall r\in \mc{L}^1_{\R{Z}'}\cap [0,\infty)^Z, \underbrace{E[\abs{r(\R{Z}')}\norm{K_{\R{Z}'}}^2_K]}_{=\beta}<\infty. 
+\end{align}
+
+Finally, 
+
+\begin{align}
+P\left[\sup_{z\in Z} K_z|_{\Omega_{\R{Z}'}}({\R{Z}'})< \infty\right]
+&\leq P\bigg[K_{\R{Z}'}({\R{Z}'})< \infty\bigg]\\
+&= P[K(\R{Z}', \R{Z}')<\infty],
+\end{align}
+
+and so the L.H.S. equals $1$ implies the R.H.S. equals $1$.
 
 :::
 
@@ -593,8 +640,8 @@ for all $u\in \mc{H}_K$.
 Suppose $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ for some $\R{Z}'$ and reproducing kernel $K$. For all $M\in (-\infty, \infty]^{\mc{H}_K}$ and $G\in (-\infty, \infty]^{\mc{L}^{\infty}_{\R{Z}'}}$,
 
 \begin{align}
-M|_{\R{Z}'}^*[r]& =  M^*[\mu_{\R{Z}'}[r]]\\
-[G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\mu_{\R{Z}'}[r'-r]]
+M|_{\R{Z}'}^*[r]& =  M^*[\rho_{\R{Z}'}[r]]\\
+[G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\rho_{\R{Z}'}[r'-r]]
 \end{align}
 
 for all $r'\in \mc{L}^1_{\R{Z}'}$.
@@ -610,8 +657,8 @@ To show the first equality:
 \begin{align}
 M|_{\R{Z}'}^*[r]& = \sup_{s\in \mc{L}^\infty_{\R{Z}'}} \langle r, s \rangle_{\R{Z}'} - \underbrace{M|_{\R{Z}'}[s]}_{\inf_{\substack{t\in \mc{H}_K:\\ t|_{\Omega_{\R{Z}'}}= s}} M[t]}\\
 &= \sup_{t\in \mc{H}_K} \sup_{\substack{s\in \mc{L}^\infty_{\R{Z}'}:\\ t|_{\Omega_{\R{Z}'}}= s}} \langle r, s \rangle_{\R{Z}'} - M[t]\\
-&= \sup_{t\in \mc{H}_K} \underbrace{\langle r, t|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'}}_{\langle t, \mu_{\R{Z}'}[r]\rangle_K} - M[t]\\
-&= M^*[\mu_{\R{Z}'}[r]].
+&= \sup_{t\in \mc{H}_K} \underbrace{\langle r, t|_{\Omega_{\R{Z}'}} \rangle_{\R{Z}'}}_{\langle t, \rho_{\R{Z}'}[r]\rangle_K} - M[t]\\
+&= M^*[\rho_{\R{Z}'}[r]].
 \end{align}
 
 By the infimal convolution theorem,
@@ -619,7 +666,7 @@ By the infimal convolution theorem,
 \begin{align}
 [G+M|_{\R{Z}'}]^*[r']
 &= [G^*\square M|_{\R{Z}'}^*][r']\\
-&= \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] + \underbrace{M|_{\R{Z}'}^*[r'-r]}_{M^*[\mu_{\R{Z}'}[r'-r]]}.
+&= \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] + \underbrace{M|_{\R{Z}'}^*[r'-r]}_{M^*[\rho_{\R{Z}'}[r'-r]]}.
 \end{align}
 
 :::
@@ -640,7 +687,7 @@ Then,
 \begin{align}
 M^*[u] 
 &:= \sup_{t\in \mc{H}_K} \langle t, u\rangle_K - \underbrace{M[t]}_{\frac1{4\lambda} \norm{t}^2_K}\\
-&=  \sup_{t\in \mc{H}_K} \frac{1}{4\lambda}\big(\norm{2\lambda u}_K  - \underbrace{\norm{t-2\lambda u}_K}_{\mathrlap{\text{$\geq 0$ with equality iff $t=2\lambda u$}}} \big) \\
+&=  \sup_{t\in \mc{H}_K} \frac{1}{4\lambda}\big(\norm{2\lambda u}^2_K  - \underbrace{\norm{t-2\lambda u}^2_K}_{\mathrlap{\text{$\geq 0$ with equality iff $t=2\lambda u$}}} \big) \\
 &= \lambda\norm{u}^2_K\\
 &\xrightarrow{\lambda\to \infty} \delta_{\Set{0}}[u].
 \end{align}
@@ -648,12 +695,12 @@ M^*[u]
 By the above Lemma,
 
 \begin{align}
-M|_{\R{Z}'}^*[r]& =  M^*[\mu_{\R{Z}'}[r]]\\
-&= \lambda\norm{\mu_{\R{Z}'}[r]}^2_K\\
-&\xrightarrow{\lambda\to \infty} \delta_{\Set{0}}[\mu_{\R{Z}'}[r]]\\
-[G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\mu_{\R{Z}'}[r'-r]]\\
-&=\inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  \lambda\norm{\mu_{\R{Z}'}[r'-r]}^2_K\\
-&\xrightarrow{\lambda\to \infty} \inf_{\substack{r\in \mc{L}^1_{\R{Z}'}:\\ \mu_{\R{Z}'}[r']=\mu_{\R{Z}'}[r]}} G^*[r].
+M|_{\R{Z}'}^*[r]& =  M^*[\rho_{\R{Z}'}[r]]\\
+&= \lambda\norm{\rho_{\R{Z}'}[r]}^2_K\\
+&\xrightarrow{\lambda\to \infty} \delta_{\Set{0}}[\rho_{\R{Z}'}[r]]\\
+[G + M|_{\R{Z}'}]^*[r'] & = \inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  M^*[\rho_{\R{Z}'}[r'-r]]\\
+&=\inf_{r\in \mc{L}^1_{\R{Z}'}} G^*[r] +  \lambda\norm{\rho_{\R{Z}'}[r'-r]}^2_K\\
+&\xrightarrow{\lambda\to \infty} \inf_{\substack{r\in \mc{L}^1_{\R{Z}'}:\\ \rho_{\R{Z}'}[r']=\rho_{\R{Z}'}[r]}} G^*[r].
 \end{align}
 
 
@@ -671,8 +718,8 @@ For $P_{\R{Z}}\ll P_{\R{Z}'}$, a function $f\in {(-\infty,\infty]}^{[0,\infty)}$
 
 \begin{align}
 D_f(P_{\R{Z}}\|P_{\R{Z}'})&\geq \sup_{\lambda>0} \underbrace{\sup_{t\in \mc{H}_K} E[t(\R{Z})] - F^*[t|_{\Omega_{\R{Z}'}}] - \frac1{4\lambda} \norm{t}^2_K}_{\alpha(\lambda):=}\\
-&= \sup_{\lambda>0} \overbrace{\inf_{r\in \mc{R}} E\left[(f(r(\R{Z})) \right] + \lambda\norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}^2_K}^{\beta(\lambda):=}\\
-&= \inf_{\substack{r\in \mc{R}:\\ \mu_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
+&= \sup_{\lambda>0} \overbrace{\inf_{r\in \mc{R}} E\left[(f(r(\R{Z})) \right] + \lambda\norm{E[K_{\R{Z}}]-\rho_{\R{Z}'}[r]}^2_K}^{\beta(\lambda):=}\\
+&= \inf_{\substack{r\in \mc{R}:\\ \rho_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
 \end{align}
 
 where
@@ -687,9 +734,15 @@ for any $\mc{R}\subseteq \mc{L}^1_{\R{Z}'}$. Furthermore, $\alpha=\beta$ and the
 \operatorname{Ker}(\langle \cdot, \mc{H}|_{\R{Z}'} \rangle_{\R{Z'}}) \cap \left(\mc{R}-\left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}\right) \subseteq [0]_{\R{Z}'},
 \end{align}
 
-in which case $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ implies $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$.
+in which case $r\in \mc{R}$ and $\rho_{\R{Z}'}[r]=E[K_{\R{Z}}]$ implies $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$.
 
 :::
+
++++
+
+:::{note}
+
+If $\mc{R}$ is restricted to non-negative functions, the condition $\mc{H}_K|_{\R{Z}'} \subseteq \mc{L}^{\infty}_{\R{Z}'}$ can be replaced by $P[K(\R{Z}', \R{Z}')<\infty]=1$ instead.
 
 +++
 
@@ -711,9 +764,9 @@ By the above Lemma and example,
 \alpha(\lambda)
 %&=[F^*+M|_{\R{Z}'}]^*[r']\\
 %&= [F\square M|_{\R{Z}'}^*][r']\\
-&= \inf_{r\in \mc{L}^1_{\R{Z}'}} \underbrace{F[r]}_{E[f(r(\R{Z}))] + \delta_{\mc{R}}[r]} + \underbrace{M|_{\R{Z}'}^*[r'-r]}_{M^*[\underbrace{\mu_{\R{Z}'}[r'-r]}_{\underbrace{\mu_{\R{Z}'}[r']}_{E[K_{\R{Z}}]}-\mu_{\R{Z}'}[r]}]}\\
-&= \inf_{r\in \mc{L}^1_{\R{Z}'}} E[f(r(\R{Z}))] + \delta_{\mc{R}}[r] + M^*[E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]]\\
-&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))]  + \underbrace{M^*[E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]]}_{\lambda \norm{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}^2_K}\\
+&= \inf_{r\in \mc{L}^1_{\R{Z}'}} \underbrace{F[r]}_{E[f(r(\R{Z}))] + \delta_{\mc{R}}[r]} + \underbrace{M|_{\R{Z}'}^*[r'-r]}_{M^*[\underbrace{\rho_{\R{Z}'}[r'-r]}_{\underbrace{\rho_{\R{Z}'}[r']}_{E[K_{\R{Z}}]}-\rho_{\R{Z}'}[r]}]}\\
+&= \inf_{r\in \mc{L}^1_{\R{Z}'}} E[f(r(\R{Z}))] + \delta_{\mc{R}}[r] + M^*[E[K_{\R{Z}}]-\rho_{\R{Z}'}[r]]\\
+&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))]  + \underbrace{M^*[E[K_{\R{Z}}]-\rho_{\R{Z}'}[r]]}_{\lambda \norm{E[K_{\R{Z}}]-\rho_{\R{Z}'}[r]}^2_K}\\
 &= \beta(\lambda).
 \end{align}
 
@@ -721,15 +774,15 @@ The bound is maximized with $\lambda\to \infty$, which gives
 
 \begin{align}
 \sup_{\lambda >0} \beta(\lambda)=\limsup_{\lambda\to \infty}\beta(\lambda)
-%&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))] + \sup_{\lambda >0} \lambda \norm*{E[K_{\R{Z}}]-\mu_{\R{Z}'}[r]}_K\\
-&= \inf_{\substack{r\in \mc{R}:\\ \mu_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
+%&= \inf_{r\in \mc{R}} E[f(r(\R{Z}))] + \sup_{\lambda >0} \lambda \norm*{E[K_{\R{Z}}]-\rho_{\R{Z}'}[r]}_K\\
+&= \inf_{\substack{r\in \mc{R}:\\ \rho_{\R{Z}'}[r]=E[K_{\R{Z}}]}} E\left[(f(r(\R{Z})) \right]
 \end{align}
 
-as desired. The bound is tight if $r\in \mc{R}$ and $\mu_{\R{Z}'}[r]=E[K_{\R{Z}}]$ imply $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$. The desired equality condition follows because
+as desired. The bound is tight if $r\in \mc{R}$ and $\rho_{\R{Z}'}[r]=E[K_{\R{Z}}]$ imply $r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'}$. The desired equality condition follows because
 
 \begin{align}
 r\in \mc{R} &\iff r-r' \in \mc{R}-\Set{\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}}\\
-\mu_{\R{Z}'}[r]=E[K_{\R{Z}}] &\iff r-r'\in \operatorname{Ker}(\langle \cdot, \mc{H}|_{\R{Z}'} \rangle_{\R{Z'}}) \\
+\rho_{\R{Z}'}[r]=E[K_{\R{Z}}] &\iff r-r'\in \operatorname{Ker}(\langle \cdot, \mc{H}|_{\R{Z}'} \rangle_{\R{Z'}}) \\
 r\in \left[\tfrac{dP_{\R{Z}}}{dP_{\R{Z}'}}\right]_{\R{Z}'} &\iff r-r'\in \left[0\right]_{\R{Z}'}.
 \end{align}
 
