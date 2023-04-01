@@ -1,6 +1,6 @@
 {
   "jupyter-config-data": {
-    "collaborative": false,
+    "collaborative": true,
     "settingsUrl": "../build/schemas",
     "themesUrl": "./build/themes"
   },

@@ -91,6 +91,9 @@
       "About the %1 Kernel": [
         "%1 \u6838\u5fc3\u7684\u76f8\u95dc\u8cc7\u8a0a"
       ],
+      "Activate Command Palette": [
+        "\u555f\u52d5\u6307\u4ee4\u9762\u677f"
+      ],
       "Activate Next Tab": [
         "\u5207\u63db\u81f3\u4e0b\u4e00\u500b\u5206\u9801"
       ],
@@ -307,6 +310,9 @@
       ],
       "Command Palette": [
         "\u547d\u4ee4\u9762\u677f"
+      ],
+      "Command Palette Section": [
+        "\u6307\u4ee4\u9762\u677f\u6bb5\u843d"
       ],
       "Commands": [
         "\u547d\u4ee4"
@@ -763,6 +769,12 @@
       "Markdown Reference": [
         "Markdown \u53c3\u8003\u8cc7\u6599"
       ],
+      "Merge Cell Above": [
+        "\u5f80\u4e0a\u5408\u4f75\u5132\u5b58\u683c"
+      ],
+      "Merge Cell Below": [
+        "\u5f80\u4e0b\u5408\u4f75\u5132\u5b58\u683c"
+      ],
       "Merge Selected Cells": [
         "\u5408\u4f75\u9078\u53d6\u7684\u5132\u5b58\u683c"
       ],
@@ -919,6 +931,12 @@
       "Open from Path\u2026": [
         "\u5f9e\u6b64\u958b\u555f..."
       ],
+      "Open from URL": [
+        "\u5f9e URL \u958b\u555f"
+      ],
+      "Open from URL\u2026": [
+        "\u5f9e URL \u958b\u555f..."
+      ],
       "Open from path": [
         "\u5f9e\u8def\u5f91\u958b\u555f"
       ],
@@ -978,6 +996,9 @@
       ],
       "Presentation Mode": [
         "\u7c21\u5831\u6a21\u5f0f"
+      ],
+      "Print\u2026": [
+        "\u5217\u5370..."
       ],
       "Python File": [
         "Python \u6a94\u6848"
@@ -1168,6 +1189,9 @@
       "Save Current Workspace": [
         "\u5132\u5b58\u7576\u524d\u5de5\u4f5c\u5340"
       ],
+      "Save Current Workspace As\u2026": [
+        "\u5132\u5b58\u7576\u524d\u5de5\u4f5c\u5340\u70ba..."
+      ],
       "Save Failed": [
         "\u5132\u5b58\u5931\u6557"
       ],
@@ -1179,6 +1203,9 @@
       ],
       "Save all open documents": [
         "\u5132\u5b58\u6240\u6709\u958b\u555f\u7684\u6587\u4ef6"
+      ],
+      "Save and Export Notebook: %1": [
+        "\u5b58\u6a94\u4e26\u628a Notebook \u532f\u51fa\uff1a %1"
       ],
       "Save and Reload": [
         "\u5132\u5b58\u4e26\u91cd\u65b0\u8f09\u5165"
@@ -1484,6 +1511,15 @@
       "hash": [
         "\u96dc\u6e4a"
       ],
+      "menu\u0004Language": [
+        "\u8a9e\u8a00"
+      ],
+      "menu\u0004New": [
+        "\u65b0\u589e"
+      ],
+      "menu\u0004Save and Export Notebook As\u2026": [
+        "\u5b58\u6a94\u4e26\u628a Notebook \u532f\u51fa\u6210..."
+      ],
       "schema\u0004Code Console": [
         "\u7a0b\u5f0f\u78bc\u4e3b\u63a7\u53f0"
       ],
@@ -1616,6 +1652,9 @@
       "schema\u0004Status Bar settings.": [
         "\u72c0\u614b\u5217\u8a2d\u5b9a"
       ],
+      "schema\u0004Table of Contents": [
+        "\u76ee\u9304"
+      ],
       "schema\u0004Terminal": [
         "\u7d42\u7aef\u4ecb\u9762"
       ],
@@ -1634,6 +1673,9 @@
       "schema\u0004Theme manager settings.": [
         "\u4e3b\u984c\u7ba1\u7406\u54e1\u8a2d\u5b9a"
       ],
+      "settings\u0004Command Palette": [
+        "\u6307\u4ee4\u9762\u677f"
+      ],
       "settings\u0004Command arguments": [
         "\u6307\u4ee4\u5f15\u6578"
       ],
@@ -1648,6 +1690,9 @@
       ],
       "settings\u0004Hide Front Matter": [
         "\u96b1\u85cf Front Matter"
+      ],
+      "settings\u0004Language": [
+        "\u8a9e\u8a00"
       ],
       "settings\u0004Line Height": [
         "\u884c\u9ad8"
@@ -1673,11 +1718,17 @@
       "settings\u0004Menu unique id": [
         "\u83dc\u55ae\u552f\u4e00 id"
       ],
+      "settings\u0004Modal Command Palette": [
+        "\u6307\u4ee4\u9762\u677f"
+      ],
       "settings\u0004The font family used to render markdown.\nIf `null`, value from current theme is used.": [
         "\u7528\u65bc Markdown \u7684\u5b57\u9ad4\u3002\u82e5\u70ba null\uff0c\u5247\u4f7f\u7528\u76ee\u524d\u4e3b\u984c\u7684\u5b57\u9ad4\u3002"
       ],
       "settings\u0004The size in pixel of the font used to render markdown.\nIf `null`, value from current theme is used.": [
         "\u7528\u65bc Markdown \u7684\u5b57\u9ad4\u5927\u5c0f\uff08\u50cf\u7d20\uff09\u3002\u82e5\u70ba null\uff0c\u5247\u4f7f\u7528\u76ee\u524d\u4e3b\u984c\u7684\u5b57\u9ad4\u5927\u5c0f\u3002"
+      ],
+      "settings\u0004Whether the command palette should be modal or in the left panel.": [
+        "\u5c07\u6307\u4ee4\u9762\u677f\u4ee5\u4e92\u52d5\u8996\u7a97\u5448\u73fe\u6216\u662f\u986f\u793a\u65bc\u5de6\u5074\u6b04"
       ],
       "settings\u0004Whether to hide YAML front matter.\nThe YAML front matter must be placed at the top of the document,\nstarted by a line of three dashes (---) and ended by a line of\nthree dashes (---) or three points (...).": [
         "\u662f\u5426\u96b1\u85cf YAML front matter\u3002\nYAML front matter \u9808\u653e\u7f6e\u65bc\u6587\u4ef6\u958b\u982d\uff0c\u4e14\u9996\u884c\u4ee5\u4e09\u500b\u7834\u6298\u865f(---) \u958b\u59cb\u4e26\u4ee5\u4e09\u500b\u7834\u6298\u865f(---) \u6216\u9ede(...) \u4f5c\u70ba\u672b\u884c\u7d50\u675f\u3002"
